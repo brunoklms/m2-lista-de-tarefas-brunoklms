@@ -10,3 +10,48 @@ const tasks = [
   {title: "Pagar a conta de energia", type: "Urgente"},
   {title: "Assistir a um documentário interessante", type: "Normal"},
 ];
+
+function renderElements (arr) {
+  const lista = document.querySelector('ul');
+
+  lista.innerHTML = '';
+
+  for(let i = 0; i < arr.length; i++){
+    const li = createTaskItem(arr[i])
+
+    lista.appendChild(li);
+  }
+}
+
+function createTaskItem (task) {
+      const listItem = document.createElement('li');
+      const span = document.createElement('span');
+      const p = document.createElement('p');
+      const button = document.createElement('button');
+      const div = document.createElement('div');
+
+      listItem.classList.toggle('task__item');
+      span.classList.toggle('task-type');
+      button.classList.toggle('task__button--remove-task');
+      div.classList.toggle('task-info__container');
+
+      if(task.type == "Urgente"){
+        span.classList.toggle('span-urgent');
+      } else if (task.type == "Importante"){
+        span.classList.toggle('span-important');
+      } else {
+        span.classList.toggle('span-normal');
+      }
+
+      
+      p.innerText = task.title;
+
+      listItem.appendChild(div);
+      div.appendChild(span);
+      div.appendChild(p);
+      listItem.appendChild(button);
+
+      return listItem;
+    }
+
+renderElements(tasks);
