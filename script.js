@@ -34,16 +34,15 @@ function createTaskItem (task) {
       span.classList.toggle('task-type');
       button.classList.toggle('task__button--remove-task');
       div.classList.toggle('task-info__container');
-
-      if(task.type == "Urgente"){
+  
+      if(task.type.toUpperCase() == "URGENTE"){
         span.classList.toggle('span-urgent');
-      } else if (task.type == "Importante"){
+      } else if (task.type.toUpperCase() == "IMPORTANTE"){
         span.classList.toggle('span-important');
       } else {
         span.classList.toggle('span-normal');
       }
 
-      
       p.innerText = task.title;
 
       listItem.appendChild(div);
@@ -54,4 +53,20 @@ function createTaskItem (task) {
       return listItem;
     }
 
-renderElements(tasks);
+    renderElements(tasks);
+
+const btnAddTask = document.querySelector('.form__button--add-task');
+
+btnAddTask.addEventListener('click', function (event) {
+  event.preventDefault();
+  
+  const nivelImportancia = document.querySelector('select');
+  const taskName = document.querySelector('.form__input--text');
+
+  const newTask = {
+    title: taskName.value,
+    type: nivelImportancia.value
+  }
+    tasks.push(newTask);
+    renderElements(tasks);
+})
