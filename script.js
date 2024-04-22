@@ -50,6 +50,12 @@ function createTaskItem (task) {
       div.appendChild(p);
       listItem.appendChild(button);
 
+      button.addEventListener('click', function (){
+        listItem.remove();
+        tasks.splice(index, 1);
+        renderElements();
+      });
+
       return listItem;
     }
 
