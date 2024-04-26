@@ -51,9 +51,10 @@ function createTaskItem (task) {
       listItem.appendChild(button);
 
       button.addEventListener('click', function (){
-        listItem.remove();
+        const index = tasks.indexOf(task)
+
         tasks.splice(index, 1);
-        renderElements();
+        renderElements(tasks);
       });
 
       return listItem;
